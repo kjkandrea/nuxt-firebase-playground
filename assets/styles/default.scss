@@ -12,6 +12,20 @@
     letter-spacing: 0;
   }
 
+  .v-form {
+    .v-input {
+      .v-text-field__details {
+        display: none;
+      }
+
+      &.error--text {
+        .v-text-field__details {
+          display: block;
+        }
+      }
+    }
+  }
+
   .other-auth {
     padding: 0 24px 20px;
     .v-btn {

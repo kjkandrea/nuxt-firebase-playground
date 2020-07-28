@@ -1,12 +1,13 @@
 <template>
   <div>
-    <v-btn icon @click.stop="dialog = true">
+    <v-btn icon @click.stop="onOpenDialog">
       <v-icon>
         mdi-account
       </v-icon>
     </v-btn>
     <v-dialog
       v-model="dialog"
+      persistent
       max-width="380"
     >
       <v-card>
@@ -15,7 +16,7 @@
           <v-spacer />
           <v-btn
             icon
-            @click.stop="dialog = false"
+            @click.stop="onCloseDialog"
           >
             <v-icon>
               mdi-close
@@ -24,29 +25,35 @@
         </v-card-title>
 
         <v-card-text>
-          <v-form>
+          <v-form
+            ref="form"
+            v-model="valid"
+            @submit.prevent="onSubmitForm"
+          >
             <v-text-field
+              ref="focusInput"
+              v-model="email"
               name="email"
               type="email"
               placeholder="이메일을 입력하세요."
               outlined
-              hide-details
-              class="mb-3"
+              :rules="emailRules"
             />
 
             <v-text-field
+              v-model="password"
               name="password"
               type="password"
               placeholder="비밀번호를 입력하세요."
               outlined
-              hide-details
-              class="mb-3"
+              :rules="passwordRules"
             />
             <v-btn
               type="submit"
               color="primary"
               block
               x-large
+              :disabled="!valid"
             >
               로그인 하기
             </v-btn>
@@ -101,11 +108,37 @@
 export default {
   data () {
     return {
-      dialog: true
+      dialog: false,
+      valid: false,
+      email: '',
+      password: '',
+      emailRules: [
+        v => !!v || '이메일은 필수입니다.',
+        v => /.+@.+/.test(v) || '이메일이 유효하지 않습니다.'
+      ],
+      passwordRules: [
+        v => !!v || '비밀번호는 필수입니다.'
+      ]
     }
   },
   methods: {
-
+    onSubmitForm () {
+      if (this.$refs.form.validate()) {
+        alert('로그인을 시도함')
+      }
+    },
+    onOpenDialog () {
+      this.dialog = true
+      setTimeout(_ =>
+        this.$refs.focusInput.focus()
+      , 300)
+    },
+    onCloseDialog () {
+      this.dialog = false
+      this.valid = false
+      this.email = ''
+      this.password = ''
+    }
   }
 }
 </script>

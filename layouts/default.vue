@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import SignIn from '~/components/site/SignIn.vue'
+import SignIn from '~/components/site/auth/SignIn.vue'
 
 export default {
   components: {
