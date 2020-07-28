@@ -28,11 +28,6 @@ export default {
     ]
   },
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
-  /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
@@ -56,8 +51,13 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+  /*
+  ** Global CSS
+  */
+  // css: ['@/assets/scss/main.scss'],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -70,10 +70,10 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      light: true,
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
+        light: {
+          primary: colors.red.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,

@@ -1,0 +1,26 @@
+
+:root {
+  .v-application {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  }
+
+  .v-text-field--outlined > .v-input__control > .v-input__slot {
+    min-height: 48px;
+  }
+
+  .v-btn {
+    letter-spacing: 0;
+  }
+
+  .other-auth {
+    padding: 0 24px 20px;
+    .v-btn {
+      margin-bottom: 10px;
+      border-color: #999;
+      .v-btn__content {
+        font-size: 1rem;
+        text-transform: none;
+      }
+    }
+  }
+}
